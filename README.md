@@ -5,6 +5,7 @@ REST API με FastAPI, SQLModel και SQLite για έναν οργανισμό
 
 ## Τι κάνει
 
+```
 Auth: εγγραφή, σύνδεση, JWT access tokens, GET /auth/me
 
 Heroes: CRUD με validation, name/power τουλάχιστον 3 χαρακτήρες,
@@ -26,8 +27,11 @@ Business rules:
 status codes: 201 στη δημιουργία, 204 στη διαγραφή, 401/403/404/422
 ανάλογα με την περίπτωση.
 
+```
+
 ## Δομή project
 
+```
 hero_api/
   app/
     main.py            δημιουργία FastAPI app, include routers, lifespan
@@ -43,9 +47,9 @@ hero_api/
     test_api.py         pytest και TestClient, προσωρινή in-memory DB
   requirements.txt
   README.md
-
+```
 ## Πώς τρέχει
-
+```
 python -m venv venv
 source venv/Scripts/activate    (Windows, Git Bash)
 venv\Scripts\Activate.ps1       (PowerShell)
@@ -56,10 +60,10 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 
 Τρέχει στο http://127.0.0.1:8000. Docs στο /docs (Swagger).
-
+```
 
 ## Endpoints
-
+```
 POST   /auth/register            Public          δημιουργία χρήστη
 POST   /auth/login                Public          επιστρέφει access_token
 GET    /auth/me                     Authenticated   ο τρέχων χρήστης
@@ -76,17 +80,18 @@ GET    /missions/{mission_id}       Public          αποστολή με βάσ
 PATCH  /missions/{mission_id}       Authenticated   μερική ενημέρωση
 DELETE /missions/{mission_id}       Admin           διαγραφή
 
-
+```
 ## Tests
-
+```
 pytest -v
 
 7 test cases: register, login, έλεγχος authentication, δημιουργία
 ήρωα, ο κανόνας "αποστολή για ανύπαρκτο ήρωα επιστρέφει 404", έλεγχος
 ρόλου στη διαγραφή, διαγραφή από admin. 
 
-
+```
 ## Πιθανές βελτιώσεις
-
+```
 PostgreSQL και Alembic migrations αντί για SQLite και create_all.
 Rate limiting στο /auth/login.
+```
